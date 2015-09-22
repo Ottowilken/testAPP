@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load staticfiles %}
+     <link rel="stylesheet" type="text/css" href="/static/css/style.css" />
+    <meta charset="UTF-8">
+    <title>You have registered</title>
+       <style type="text/css">
+        div.field_error input:not([type=submit]) {
+            border:color: red;
+            border: 2px solid #FF0000;
+        }
+    </style>
+</head>
+<body>
+    <nav class="col-xs-12">
+            <h2>Congratulations, now you can log in!</h2>
+    </nav>
+    {% block content %}
+
+
+        <form method="post" class="form-login" action="{% url 'customer_details:auth' %}">{% csrf_token %}
+             {% if message %}
+               {{message}}
+            {% endif %}
+            <div>
+                <label for="email">Email address:</label>
+                <input style="width:30%" type="email" name="email" value="" id="email">
+                <label style="padding-top:15px" for="password">Password:</label>
+                <input style="width:30%" type="password" name="password" value="" id="password">
+                <input style="alignment:left" type="submit" value="Login" />
+            </div>
+        </form>
+    {% endblock %}
+</body>
+
+</html>
