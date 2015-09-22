@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load staticfiles %}
+     <link rel="stylesheet" type="text/css" href="/static/css/style.css" />
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <style type="text/css">
+        div.field_error input:not([type=submit]) {
+            border:color: red;
+            border: 2px solid #FF0000;
+        }
+    </style>
+</head>
+<body>
+    <nav class="col-xs-12">
+        <h2>Register</h2>
+    </nav>
+    <div class="selected">
+
+          {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li> {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+        <form method='post' action="{% url 'customer_details:register' %}"  enctype="multipart/form-data" id="frmId">{% csrf_token %}
+            {% if message %}
+               {{message}}
+            {% endif %}
+
+            <div>
+                {{form.as_p}}
+            </div>
+
+
+           <input type="submit" value="Register"/>
+            <input type="button" value="Cancel" onclick="window.location='index'" >
+        </form>
+    </div>
+</body>
+
+</html>
